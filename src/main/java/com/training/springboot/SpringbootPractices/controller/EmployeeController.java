@@ -1,6 +1,8 @@
 package com.training.springboot.SpringbootPractices.controller;
 
 import com.training.springboot.SpringbootPractices.domain.Employee;
+import com.training.springboot.SpringbootPractices.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @GetMapping
     public List<Employee> listAllAnnotation() {
