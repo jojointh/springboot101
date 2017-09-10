@@ -1,10 +1,23 @@
 package com.training.springboot.SpringbootPractices.domain;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "EMPLOYEE")
 public class Employee {
 
+    @Id
+    @Column(name = "ID")
+    @GeneratedValue
     private Integer id;
+
+    @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
+
+    @Column(name = "AGE")
     private Integer age;
 
     public Integer getId() {
