@@ -21,7 +21,8 @@ public class EmployeeController {
 
         System.out.println("### Enter to GET: /employees ###");
 
-        return employeeRepository.findAll();
+        return employeeRepository.findAllByNativeSQL();
+//        return employeeRepository.findAll();
     }
 
     @GetMapping("/{id}")
@@ -30,6 +31,14 @@ public class EmployeeController {
         System.out.println("### id: " + id);
 
         Employee employee = employeeRepository.findById(id);
+
+        return employee;
+    }
+
+    @GetMapping("/lastname/{name}")
+    public Employee getEmployee(@PathVariable String name) {
+
+        Employee employee = employeeRepository.findByLastName(name);
 
         return employee;
     }
