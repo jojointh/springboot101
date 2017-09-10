@@ -2,9 +2,7 @@ package com.training.springboot.SpringbootPractices.controller;
 
 import com.training.springboot.SpringbootPractices.domain.Employee;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,4 +35,19 @@ public class EmployeeController {
 
         return employeeList;
     }
+
+    @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
+    public Employee getEmployee(@PathVariable Integer id) {
+
+        System.out.println("### id: " + id);
+
+        Employee employee = new Employee();
+        employee.setId(1);
+        employee.setFirstName("Surasak");
+        employee.setLastName("A.");
+        employee.setAge(20);
+
+        return employee;
+    }
+
 }
