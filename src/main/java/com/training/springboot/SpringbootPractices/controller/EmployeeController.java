@@ -1,6 +1,7 @@
 package com.training.springboot.SpringbootPractices.controller;
 
 import com.training.springboot.SpringbootPractices.domain.Employee;
+import com.training.springboot.SpringbootPractices.repository.EmployeeCrudRepository;
 import com.training.springboot.SpringbootPractices.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,16 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeCrudRepository crudRepository;
+
     @GetMapping
     public List<Employee> listAllAnnotation() {
 
         System.out.println("### Enter to GET: /employees ###");
 
-        return employeeRepository.findAllByNativeSQL();
+        return crudRepository.findAll();
+//        return employeeRepository.findAllByNativeSQL();
 //        return employeeRepository.findAll();
     }
 
