@@ -9,9 +9,10 @@ import java.util.List;
 
 @Controller
 @RestController
+@RequestMapping(value = "/employees")
 public class EmployeeController {
 
-    @RequestMapping(value = "/employees", method = RequestMethod.GET)
+    @GetMapping
     public List<Employee> listAllAnnotation() {
 
         System.out.println("### Enter to GET: /employees ###");
@@ -36,7 +37,7 @@ public class EmployeeController {
         return employeeList;
     }
 
-    @RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
+    @GetMapping("{id}")
     public Employee getEmployee(@PathVariable Integer id) {
 
         System.out.println("### id: " + id);
