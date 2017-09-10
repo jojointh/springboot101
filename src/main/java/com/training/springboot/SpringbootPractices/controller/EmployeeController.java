@@ -9,7 +9,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping(value = "/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 
     @GetMapping
