@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,24 +21,7 @@ public class EmployeeController {
 
         System.out.println("### Enter to GET: /employees ###");
 
-        List<Employee> employeeList = new ArrayList<>();
-
-        Employee employee = new Employee();
-        employee.setId(1);
-        employee.setFirstName("Surasak");
-        employee.setLastName("Ad.");
-        employee.setAge(20);
-
-        Employee employee2 = new Employee();
-        employee2.setId(2);
-        employee2.setFirstName("Surasak2");
-        employee2.setLastName("A.");
-        employee2.setAge(21);
-
-        employeeList.add(employee);
-        employeeList.add(employee2);
-
-        return employeeList;
+        return employeeRepository.findAll();
     }
 
     @GetMapping("/{id}")
@@ -47,11 +29,7 @@ public class EmployeeController {
 
         System.out.println("### id: " + id);
 
-        Employee employee = new Employee();
-        employee.setId(1);
-        employee.setFirstName("Surasak");
-        employee.setLastName("A.");
-        employee.setAge(20);
+        Employee employee = employeeRepository.findById(id);
 
         return employee;
     }
@@ -61,7 +39,9 @@ public class EmployeeController {
         System.out.println("## Enter to POST: /employees");
         System.out.println("First Name : " + employeeParam.getFirstName());
 
-        // TODO: save to DB
+        // save to DB
+        employeeRepository.save(employeeParam);
+
         return employeeParam;
     }
 
@@ -70,7 +50,13 @@ public class EmployeeController {
         System.out.println("## Enter to PUT: /employees/" + id);
         System.out.println("First Name : " + employeeParam.getFirstName());
 
-        // TODO: update to DB
+        Employee employee = employeeRepository.findById(id);
+        employee.setFirstName(employeeParam.getFirstName());
+        employee.setLastName(employeeParam.getLastName());
+        employee.setAge(employeeParam.getAge());
+
+        employeeRepository.save(employee);
+
         return employeeParam;
     }
 
@@ -78,7 +64,8 @@ public class EmployeeController {
     public void deleteEmployee(@PathVariable Integer id) {
         System.out.println("## Enter to DELETE: /employees/" + id);
 
-        // TODO: delete a record in DB
+        Employee employee = getEmployee(id);
+        employeeRepository.delete(employee);
     }
 
 }
