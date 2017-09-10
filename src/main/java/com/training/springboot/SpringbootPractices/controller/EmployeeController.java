@@ -37,7 +37,7 @@ public class EmployeeController {
         return employeeList;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable Integer id) {
 
         System.out.println("### id: " + id);
@@ -49,6 +49,31 @@ public class EmployeeController {
         employee.setAge(20);
 
         return employee;
+    }
+
+    @PostMapping
+    public Employee createEmployee(@RequestBody Employee employeeParam) {
+        System.out.println("## Enter to POST: /employees");
+        System.out.println("First Name : " + employeeParam.getFirstName());
+
+        // TODO: save to DB
+        return employeeParam;
+    }
+
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employeeParam) {
+        System.out.println("## Enter to PUT: /employees/" + id);
+        System.out.println("First Name : " + employeeParam.getFirstName());
+
+        // TODO: update to DB
+        return employeeParam;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable Integer id) {
+        System.out.println("## Enter to DELETE: /employees/" + id);
+
+        // TODO: delete a record in DB
     }
 
 }
