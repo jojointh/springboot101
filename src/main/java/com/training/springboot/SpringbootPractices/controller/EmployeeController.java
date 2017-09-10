@@ -25,9 +25,9 @@ public class EmployeeController {
 
         System.out.println("### Enter to GET: /employees ###");
 
-        return crudRepository.findAll();
+//        return crudRepository.findAll();
 //        return employeeRepository.findAllByNativeSQL();
-//        return employeeRepository.findAll();
+        return employeeRepository.findAll();
     }
 
     @GetMapping("/{id}")
