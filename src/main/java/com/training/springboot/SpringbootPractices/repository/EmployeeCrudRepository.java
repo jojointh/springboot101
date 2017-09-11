@@ -9,6 +9,6 @@ public interface EmployeeCrudRepository extends JpaRepository<Employee, Integer>
 
     List<Employee> findByFirstName(String firstName);
     // findBy...
-    Employee findByLastName(String lastName);
+    List<Employee> findByLastName(String lastName);
 
 }

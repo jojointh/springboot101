@@ -43,9 +43,11 @@ public class EmployeeController {
     @GetMapping("/lastname/{name}")
     public Employee getEmployee(@PathVariable String name) {
 
-        Employee employee = employeeRepository.findByLastName(name);
+//        Employee employee = employeeRepository.findByLastName(name);
+//        return employee;
+        List<Employee> resultList = crudRepository.findByLastName(name);
+        return resultList.isEmpty()? null : resultList.get(0);
 
-        return employee;
     }
 
     @PostMapping
